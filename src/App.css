@@ -1,0 +1,14 @@
+#aa {
+  border: 2px solid #ffffff;
+}
+
+.f_box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.f_item {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 50%;
+}
