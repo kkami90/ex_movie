@@ -18,28 +18,46 @@ const MovieList = () => {
       });
   }
 
+  function del(id) {
+    fetch("http://10.100.102.2:8000/api/movie" + id, {
+      method: "delete",
+    })
+      .then((movie) => movie.text())
+      .then((movie) => {
+        if (movie === "ok") {
+          setMovie(movies.filter((movie) => movie.id !== id));
+          console.log("삭제됨");
+        }
+      });
+  }
+
   return (
     <div>
       {movies.map((movie) => (
-        <div class="card">
-          <div class="btn_g">
-            <button class="btn_1 btn">수정</button>
-            <button class="btn_2 btn">삭제</button>
+        <div className="card">
+          <div className="btn_g">
+            <button className="btn_1 btn">수정</button>
+            <button className="btn_2 btn" onClick={() => del(movie.id)}>
+              삭제
+            </button>
           </div>
-          {/* <div class="card-header" style={{ backgroundImage: {movie.medium_cover_image} }}> */}
-          <div class="card-header" style={{ backgroundImage: "" }}>
-            <div class="card-header-is_closed">
-              <div class="card-header-text"> 평점 </div>
-              <div class="card-header-number"> {movie.rating} </div>
+          <div
+            class="card-header"
+            // style={{ backgroundImage: "url(" + movie.medium_cover_image + ")" }}
+            style={{ backgroundImage: `url(${movie.medium_cover_image})` }}
+          >
+            <div className="card-header-is_closed">
+              <div className="card-header-text"> 평점 </div>
+              <div className="card-header-number"> {movie.rating} </div>
             </div>
           </div>
-          <div class="card-body">
-            <div class="card-body-header">
+          <div className="card-body">
+            <div className="card-body-header">
               <h1>{movie.title}</h1>
-              <p class="card-body-hashtag">여긴 머넣지?</p>
-              <p class="card-body-nickname"> 게시번호 : {movie.id}</p>
+              <p className="card-body-hashtag">여긴 머넣지?</p>
+              <p className="card-body-nickname"> 게시번호 : {movie.id}</p>
             </div>
-            <p class="card-body-description">{movie.summary}</p>
+            <p className="card-body-description">{movie.summary}</p>
           </div>
         </div>
       ))}

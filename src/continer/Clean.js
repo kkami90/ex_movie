@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Clean = () => {
   return (
     <div>
-      <h1> 그냥 초기공간?</h1>
+      <h1> 임시 메인화면</h1>
     </div>
   );
 };
